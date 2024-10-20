@@ -15,7 +15,7 @@ body.dark-mode {
 }
 .header {
     background-color: #003366; /* Dark blue background */
-    padding: 15px 20px; /* Padding around the header */
+    padding: 0px 0px; /* Padding around the header */
 }
 
 .nav {
