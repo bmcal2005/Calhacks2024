@@ -1,1 +1,1 @@
-http://pepsico.plus.io/
+pepsico.plus.io
