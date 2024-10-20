@@ -54,12 +54,12 @@ body.dark-mode {
     --clr-header: #013457;
     --clr-fg: #bdbddd;
     --clr-fg-alt: #cdcdff;
-    --clr-primary: #f369a2;
+    --clr-primary: #8fc8ed;
     --shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
               rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
     --shadow-hamburger: rgba(0, 0, 0, 0.16) 0px 36px 36px -36px,
                         rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
-    background-image: linear-gradient(45deg, #000000 0%, #014470 74%);
+    background-image: linear-gradient(45deg, #000000 0%, #8fc8ed 74%);
 }
 
 ::-moz-selection {
