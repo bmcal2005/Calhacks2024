@@ -53,3 +53,56 @@ button i {
 #chart {
     margin-top: 30px;
 }
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background: linear-gradient(to right, #add8e6, #ffcccb); /* Light blue to light reddish */
+    transition: background 0.3s, color 0.3s;
+}
+
+body.dark-mode {
+    background: linear-gradient(to right, #2c3e50, #34495e); /* Darker gradient for dark mode */
+    color: #ecf0f1; /* Light text color for dark mode */
+}
+
+h1, h2 {
+    color: #0065c3;
+}
+
+input[type="number"] {
+    border: 1px solid #ddd;
+}
+
+button {
+    background-color: #0065c3;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background-color: #004c9e;
+}
+
+#result {
+    margin-top: 20px;
+    font-weight: bold;
+    background-color: #eaf4ff;
+    padding: 15px;
+    border-radius: 4px;
+}
+
+body.dark-mode #result {
+    background-color: #34495e; /* Background color for result box in dark mode */
+}

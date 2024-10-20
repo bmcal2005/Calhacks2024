@@ -1,4 +1,16 @@
 let chart;
+let isDarkMode = false;
+
+function toggleTheme() {
+    isDarkMode = !isDarkMode;
+
+    document.body.classList.toggle('dark-mode');
+    const toggleButton = document.getElementById('theme-toggle');
+    toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+}
+
+// ... existing calculateSustainability and updateChart functions ...
+
 
 function calculateSustainability() {
     // Positive Agriculture
