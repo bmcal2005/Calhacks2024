@@ -1,34 +1,71 @@
-// Smooth scroll to sections
-document.querySelectorAll('nav ul li a').forEach(anchor => {
-    anchor.addEventListener('click', function(e) {
-        e.preventDefault();
-        const targetId = this.getAttribute('href').substring(1);
-        document.getElementById(targetId).scrollIntoView({
-            behavior: 'smooth'
-        });
+let chart;
+
+function calculateSustainability() {
+    // Positive Agriculture
+    const regenerativeAgriculture = parseFloat(document.getElementById('regenerativeAgriculture').value);
+    const sustainablySourced = parseFloat(document.getElementById('sustainablySourced').value);
+    const waterConsumption = parseFloat(document.getElementById('waterConsumption').value);
+    const energyEfficiency = parseFloat(document.getElementById('energyEfficiency').value);
+    const renewableEnergy = parseFloat(document.getElementById('renewableEnergy').value);
+    const pesticideUsage = parseFloat(document.getElementById('pesticideUsage').value);
+
+    // Positive Value Chain
+    const recycledPackaging = parseFloat(document.getElementById('recycledPackaging').value);
+    const recyclableMaterial = parseFloat(document.getElementById('recyclableMaterial').value);
+    const carbonEmissions = parseFloat(document.getElementById('carbonEmissions').value);
+
+    // Positive Choices
+    const positiveChoices = parseFloat(document.getElementById('positiveChoices').value);
+
+    // Calculate scores
+    const agricultureScore = (sustainablySourced + renewableEnergy) / 2;
+    const valueChainScore = (recycledPackaging + recyclableMaterial) / 2;
+    const overallScore = (agricultureScore + valueChainScore + positiveChoices) / 3;
+
+    const resultElement = document.getElementById('result');
+    resultElement.innerHTML = `
+        <h3>Results:</h3>
+        <p>Positive Agriculture Score: ${agricultureScore.toFixed(2)}%</p>
+        <p>Positive Value Chain Score: ${valueChainScore.toFixed(2)}%</p>
+        <p>Positive Choices Score: ${positiveChoices.toFixed(2)}%</p>
+        <p>Overall Sustainability Score: ${overallScore.toFixed(2)}%</p>
+    `;
+
+    updateChart(agricultureScore, valueChainScore, positiveChoices);
+}
+
+function updateChart(agriculture, valueChain, choices) {
+    const ctx = document.getElementById('sustainabilityChart').getContext('2d');
+
+    if (chart) {
+        chart.destroy();
+    }
+
+    chart = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['Positive Agriculture', 'Positive Value Chain', 'Positive Choices'],
+            datasets: [{
+                label: 'Sustainability Metrics',
+                data: [agriculture, valueChain, choices],
+                backgroundColor: 'rgba(0, 101, 195, 0.2)',
+                borderColor: 'rgba(0, 101, 195, 1)',
+                pointBackgroundColor: 'rgba(0, 101, 195, 1)',
+                pointBorderColor: '#fff',
+                pointHoverBackgroundColor: '#fff',
+                pointHoverBorderColor: 'rgba(0, 101, 195, 1)'
+            }]
+        },
+        options: {
+            scales: {
+                r: {
+                    angleLines: {
+                        display: false
+                    },
+                    suggestedMin: 0,
+                    suggestedMax: 100
+                }
+            }
+        }
     });
-});
-
-// Contact form validation
-document.getElementById('contactForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const message = document.getElementById('message').value.trim();
-
-    if (!name || !email || !message) {
-        alert('Please fill in all fields.');
-        return;
-    }
-
-    // Email validation (basic)
-    const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
-    if (!email.match(emailPattern)) {
-        alert('Please enter a valid email.');
-        return;
-    }
-
-    // If everything is fine, simulate form submission
-    alert('Thank you for your message!');
-    this.reset(); // Clears the form
-});
+}

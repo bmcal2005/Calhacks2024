@@ -3,66 +3,197 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personal Website</title>
+    <title>PepsiCo Sustainability Calculator</title>
     <link rel="stylesheet" href="style.css">
-    <script src="script.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 </head>
 <body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <h1>PepsiCo Sustainability Calculator</h1>
+    
+    <!-- Form and chart sections go here -->
 
-    <section id="home">
-        <h1>Welcome to My Personal Website</h1>
-        <p>I'm [Your Name], a passionate [Your Profession] who loves to create and innovate.</p>
-    </section>
+    <div id="result"></div>
+    <div id="chart">
+        <canvas id="sustainabilityChart"></canvas>
+    </div>
 
-    <section id="about">
-        <h2>About Me</h2>
-        <p>Hello! I'm a [Your Profession] with a love for [Your Interests]. I'm constantly learning and exploring new ideas.</p>
-    </section>
+    <script src="script.js"></script>
+</body>
+</html>
 
-    <section id="projects">
-        <h2>Projects</h2>
-        <div class="project">
-            <h3>Project 1</h3>
-            <p>A brief description of Project 1.</p>
-        </div>
-        <div class="project">
-            <h3>Project 2</h3>
-            <p>A brief description of Project 2.</p>
-        </div>
-        <div class="project">
-            <h3>Project 3</h3>
-            <p>A brief description of Project 3.</p>
-        </div>
-    </section>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1, h2 {
+            color: #0065c3;
+        }
+        .input-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #0065c3;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #004c9e;
+        }
+        #result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        #chart {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1>PepsiCo Sustainability Calculator</h1>
+    
+    <h2>Positive Agriculture</h2>
+    <div class="input-group">
+        <label for="regenerativeAgriculture">Regenerative agriculture (acres):</label>
+        <input type="number" id="regenerativeAgriculture" min="0" value="0">
+    </div>
+    <div class="input-group">
+        <label for="sustainablySourced">Sustainably sourced (%):</label>
+        <input type="number" id="sustainablySourced" min="0" max="100" value="0">
+    </div>
+    <div class="input-group">
+        <label for="waterConsumption">Water Consumption (Gallons):</label>
+        <input type="number" id="waterConsumption" min="0" value="0">
+    </div>
+    <div class="input-group">
+        <label for="energyEfficiency">Energy efficiency (kWh per unit):</label>
+        <input type="number" id="energyEfficiency" min="0" value="0">
+    </div>
+    <div class="input-group">
+        <label for="renewableEnergy">% of renewable energy used:</label>
+        <input type="number" id="renewableEnergy" min="0" max="100" value="0">
+    </div>
+    <div class="input-group">
+        <label for="pesticideUsage">Pesticide usage (lbs):</label>
+        <input type="number" id="pesticideUsage" min="0" value="0">
+    </div>
+    
+    <h2>Positive Value Chain</h2>
+    <div class="input-group">
+        <label for="recycledPackaging">% of packaging that ends up recycled:</label>
+        <input type="number" id="recycledPackaging" min="0" max="100" value="0">
+    </div>
+    <div class="input-group">
+        <label for="recyclableMaterial">% of package made from recyclable material:</label>
+        <input type="number" id="recyclableMaterial" min="0" max="100" value="0">
+    </div>
+    <div class="input-group">
+        <label for="carbonEmissions">Carbon emissions (metric tonnes):</label>
+        <input type="number" id="carbonEmissions" min="0" value="0">
+    </div>
+    
+    <h2>Positive Choices</h2>
+    <div class="input-group">
+        <label for="positiveChoices">Positive Choices (0-100%):</label>
+        <input type="number" id="positiveChoices" min="0" max="100" value="0">
+    </div>
+    
+    <button onclick="calculateSustainability()">Calculate Sustainability</button>
+    <div id="result"></div>
+    <div id="chart">
+        <canvas id="sustainabilityChart"></canvas>
+    </div>
 
-    <section id="contact">
-        <h2>Contact Me</h2>
-        <form id="contactForm">
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+    <script>
+        let chart;
 
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
+        function calculateSustainability() {
+            // Positive Agriculture
+            const regenerativeAgriculture = parseFloat(document.getElementById('regenerativeAgriculture').value);
+            const sustainablySourced = parseFloat(document.getElementById('sustainablySourced').value);
+            const waterConsumption = parseFloat(document.getElementById('waterConsumption').value);
+            const energyEfficiency = parseFloat(document.getElementById('energyEfficiency').value);
+            const renewableEnergy = parseFloat(document.getElementById('renewableEnergy').value);
+            const pesticideUsage = parseFloat(document.getElementById('pesticideUsage').value);
 
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
+            // Positive Value Chain
+            const recycledPackaging = parseFloat(document.getElementById('recycledPackaging').value);
+            const recyclableMaterial = parseFloat(document.getElementById('recyclableMaterial').value);
+            const carbonEmissions = parseFloat(document.getElementById('carbonEmissions').value);
 
-            <button type="submit">Send</button>
-        </form>
-    </section>
+            // Positive Choices
+            const positiveChoices = parseFloat(document.getElementById('positiveChoices').value);
 
-    <footer>
-        <p>&copy; 2024 Your Name</p>
-    </footer>
+            // Calculate scores (this is a simplified calculation and should be adjusted based on PepsiCo's actual metrics)
+            const agricultureScore = (sustainablySourced + renewableEnergy) / 2;
+            const valueChainScore = (recycledPackaging + recyclableMaterial) / 2;
+
+            const overallScore = (agricultureScore + valueChainScore + positiveChoices) / 3;
+
+            const resultElement = document.getElementById('result');
+            resultElement.innerHTML = `
+                <h3>Results:</h3>
+                <p>Positive Agriculture Score: ${agricultureScore.toFixed(2)}%</p>
+                <p>Positive Value Chain Score: ${valueChainScore.toFixed(2)}%</p>
+                <p>Positive Choices Score: ${positiveChoices.toFixed(2)}%</p>
+                <p>Overall Sustainability Score: ${overallScore.toFixed(2)}%</p>
+            `;
+
+            updateChart(agricultureScore, valueChainScore, positiveChoices);
+        }
+
+        function updateChart(agriculture, valueChain, choices) {
+            const ctx = document.getElementById('sustainabilityChart').getContext('2d');
+
+            if (chart) {
+                chart.destroy();
+            }
+
+            chart = new Chart(ctx, {
+                type: 'radar',
+                data: {
+                    labels: ['Positive Agriculture', 'Positive Value Chain', 'Positive Choices'],
+                    datasets: [{
+                        label: 'Sustainability Metrics',
+                        data: [agriculture, valueChain, choices],
+                        backgroundColor: 'rgba(0, 101, 195, 0.2)',
+                        borderColor: 'rgba(0, 101, 195, 1)',
+                        pointBackgroundColor: 'rgba(0, 101, 195, 1)',
+                        pointBorderColor: '#fff',
+                        pointHoverBackgroundColor: '#fff',
+                        pointHoverBorderColor: 'rgba(0, 101, 195, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        r: {
+                            angleLines: {
+                                display: false
+                            },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    }
+                }
+            });
+        }
+    </script>
 </body>
 </html>
