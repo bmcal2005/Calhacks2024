@@ -2,8 +2,8 @@ body {
     font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
-    max-width: 800px;
-    margin: 0 auto;
+    max-width: 800px; /* Limit the max width of the content */
+    margin: 0 auto; /* Center the body content */
     padding: 20px;
     background: linear-gradient(to right, #add8e6, #ffcccb); /* Light blue to light reddish */
     transition: background 0.3s, color 0.3s;
@@ -13,9 +13,12 @@ body.dark-mode {
     background: linear-gradient(to right, #2c3e50, #34495e); /* Darker gradient for dark mode */
     color: #ecf0f1; /* Light text color for dark mode */
 }
+
 .header {
     background-color: #003366; /* Dark blue background */
-    padding: 0px 0px; /* Padding around the header */
+    padding: 10px 0; /* Padding around the header */
+    width: 100%; /* Make the header full width */
+    position: relative; /* Ensure the header is positioned correctly */
 }
 
 .nav {
@@ -25,12 +28,15 @@ body.dark-mode {
     max-width: 800px; /* Limit the width of the nav */
     margin: 0 auto; /* Center the nav */
     color: rgb(74, 20, 20); /* White text color */
+    padding: 0 20px; /* Add horizontal padding for nav items */
+    width: 100%; /* Make the nav full width */
 }
 
 .nav-title {
     margin: 0; /* Remove default margin from h1 */
     font-size: 24px; /* Adjust font size as needed */
     flex-grow: 1; /* Allow title to take available space */
+    color: white; /* Set title color to white */
 }
 
 .btn {
@@ -46,9 +52,8 @@ body.dark-mode {
     margin: 0; /* Remove margin around the icon */
 }
 
-
 h1, h2 {
-    color: #0065c3;
+    color: #0065c3; /* Set heading color */
 }
 
 .input-group {
@@ -62,40 +67,40 @@ label {
 }
 
 input[type="number"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    width: 100%; /* Input takes full width */
+    padding: 10px; /* Padding for input */
+    border: 1px solid #ddd; /* Border for input */
+    border-radius: 4px; /* Rounded corners for input */
 }
 
 button {
-    background-color: #0065c3;
-    color: rgb(52, 23, 23);
-    padding: 12px 20px;
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    font-weight: 500;
-    display: inline-flex;
-    align-items: center;
-    transition: background 0.3s;
+    background-color: #0065c3; /* Button background color */
+    color: rgb(52, 23, 23); /* Button text color */
+    padding: 12px 20px; /* Button padding */
+    border: none; /* Remove border */
+    border-radius: 4px; /* Rounded corners */
+    font-size: 16px; /* Button font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-weight: 500; /* Button text weight */
+    display: inline-flex; /* Flex display for button */
+    align-items: center; /* Center items in button */
+    transition: background 0.3s; /* Transition for background change */
 }
 
 button:hover {
-    background-color: #004c9e;
+    background-color: #004c9e; /* Darker button background on hover */
 }
 
 button i {
-    margin-right: 8px;
+    margin-right: 8px; /* Space between icon and text in button */
 }
 
 #result {
-    margin-top: 20px;
-    font-weight: bold;
-    background-color: #eaf4ff;
-    padding: 15px;
-    border-radius: 4px;
+    margin-top: 20px; /* Space above result box */
+    font-weight: bold; /* Bold text for result */
+    background-color: #eaf4ff; /* Background for result */
+    padding: 15px; /* Padding for result */
+    border-radius: 4px; /* Rounded corners for result */
 }
 
 body.dark-mode #result {
@@ -103,18 +108,18 @@ body.dark-mode #result {
 }
 
 #chart {
-    margin-top: 30px;
+    margin-top: 30px; /* Space above chart */
 }
+
 .btn--icon {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    font-size: 24px;
-    margin-left: 20px;
-    color: #0065c3; /* Primary color */
+    background: transparent; /* Transparent background for icon button */
+    border: none; /* Remove border */
+    cursor: pointer; /* Pointer cursor on hover */
+    font-size: 24px; /* Font size for icon button */
+    margin-left: 20px; /* Space between title and button */
+    color: #0065c3; /* Primary color for icon button */
 }
 
 .btn--icon:hover {
     color: #004c9e; /* Darker shade for hover effect */
 }
-
