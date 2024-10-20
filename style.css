@@ -5,7 +5,17 @@ body {
     max-width: 800px;
     margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
+    transition: background 0.5s ease;
+}
+
+body.light {
+    background: linear-gradient(135deg, #add8e6, #ffcccb);
+    color: #333;
+}
+
+body.dark {
+    background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+    color: white;
 }
 
 h1, h2 {
@@ -44,6 +54,7 @@ button {
     cursor: pointer;
     display: block;
     margin: 20px auto;
+    transition: background-color 0.3s;
 }
 
 button:hover {
@@ -61,4 +72,18 @@ button:hover {
 #chart {
     margin-top: 30px;
     text-align: center;
+}
+
+/* Light/Dark theme button icon */
+.fa-moon {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #0065c3;
+}
+
+.fa-sun {
+    color: #f39c12;
 }
