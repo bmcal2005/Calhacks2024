@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PepsiCo Sustainability Calculator</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>PepsiCo Sustainability Calculator</h1>
+
+    <div class = "three-columns">
+        <div class="category">
+            <h2>Positive Agriculture</h2>
+            <div class="input-group">
+                <label for="regenerativeAgriculture">Regenerative Agriculture (Millions of Acres):</label>
+                <input type="number" id="regenerativeAgriculture" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="sustainablySourced">Sustainably Sourced Ingredients (%):</label>
+                <input type="number" id="sustainablySourced" min="0" max="100" value="0">
+            </div>
+            <div class="input-group">
+                <label for="waterEfficiency">Water-Efficiency Improvement in Watersheds (%):</label>
+                <input type="number" id="waterEfficiency" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="livesImproved">Lives Improved (Thousands of Individuals):</label>
+                <input type="number" id="livesImproved" min="0" value="0">
+            </div>
+        </div>
+        
+        <div class="category">
+            <h2>Positive Value Chain</h2>
+            <div class="input-group">
+                <label for="directEmissions">Reduction in Direct GHG Emissions (%):</label>
+                <input type="number" id="directEmissions" min="0" max="100" value="0">
+            </div>
+            <div class="input-group">
+                <label for="indirectEmissions">Reduction in Indirect GHG Emissions (%):</label>
+                <input type="number" id="indirectEmissions" min="0" max="100" value="0">
+            </div>
+            <div class="input-group">
+                <label for="operationalWaterEfficiency">Operational Water-Efficiency Improvemnt (%):</label>
+                <input type="number" id="operationalWaterEfficiency" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="waterReplenished">Water Replenished Into Local Watershed (%):</label>
+                <input type="number" id="waterReplenished" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="reusablePackaging">Beverage Offerings with Reusable Packaging (%):</label>
+                <input type="number" id="reusablePackaging" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="virginPlastic">Reduction in Tonnage of Virgin Plastic (%):</label>
+                <input type="number" id="virginPlastic" min="0" value="0">
+            </div>
+            <div class="input-group">
+                <label for="recyclablePackaging">Packaging Designed to Be Recyclable, Compostable, Biodegradable (%):</label>
+                <input type="number" id="recyclablePackaging" min="0" value="0">
+            </div>
+        </div>
+        
+        <div class="category">
+            <h2>Positive Choices</h2>
+            <div class="input-group">
+                <label for="addedSugars">Reduction in Added Sugars (%):</label>
+                <input type="number" id="addedSugars" min="0" max="100" value="0">
+            </div>
+            <div class="input-group">
+                <label for="addedSodium">Reduction in Sodium (%):</label>
+                <input type="number" id="addedSodium" min="0" max="100" value="0">
+            </div>
+            <div class="input-group">
+                <label for="addedFats">Reduction in Added Fats (%):</label>
+                <input type="number" id="addedFats" min="0" max="100" value="0">
+            </div>
+        </div>
+    </div>
+    
+    <button onclick="calculateSustainability()">Calculate Sustainability</button>
+    <div id="result"></div>
+    <div id="chart">
+        <canvas id="sustainabilityChart"></canvas>
+    </div>
+
+<div class="tabs">
+    <div class="tab-buttons">
+        <button class="tab-button active" onclick="openTab('agriculture')">Positive Agriculture</button>
+        <button class="tab-button" onclick="openTab('value-chain')">Positive Value Chain</button>
+        <button class="tab-button" onclick="openTab('choices')">Positive Choices</button>
+    </div>
+
+    <div id="agriculture" class="tab-content active">
+        <h3>Regenerative Agriculture</h3>
+        <p id="regenerativeAgricultureStatus"></p>
+        <h3>Sustainably-Sourced Ingredients</h3>
+        <p id="sustainablySourcedStatus"></p>
+        <h3>Water Efficiency in Watersheds</h3>
+        <p id="waterEfficiencyStatus"></p>
+        <h3>Lives Improved</h3>
+        <p id="livesImprovedStatus"></p>
+    </div>
+    
+    <div id="value-chain" class="tab-content">
+        <h3>Direct GHG Emissions</h3>
+        <p id="directEmissionsStatus"></p>
+        <h3>Indirect GHG Emissions</h3>
+        <p id="indirectEmissionsStatus"></p>
+        <h3>Operational Water Efficiency</h3>
+        <p id="operationalWaterEfficiencyStatus"></p>
+        <h3>Water Replenished into Local Watersheds</h3>
+        <p id="waterReplenishedStatus"></p>
+        <h3>Reusable Packaging</h3>
+        <p id="reusablePackagingStatus"></p>
+        <h3>Using Virgin Plastics</h3>
+        <p id="virginPlasticStatus"></p>
+        <h3>Recyclable, Compostable, and Biodegradable Packaging</h3>
+        <p id="recyclablePackagingStatus"></p>
+    </div>
+    
+    <div id="choices" class="tab-content">
+        <h3>Reduction in Added Sugars</h3>
+        <p id="addedSugarsStatus"></p>
+        <h3>Reduction in Sodium</h3>
+        <p id="addedSodiumStatus"></p>
+        <h3>Reduction in Added Fats</h3>
+        <p id="addedFatsStatus"></p>
+    </div>
+    
+</div>
+
+<script src="script.js"></script>
+
+
+
+</body>
+</html>
