@@ -56,4 +56,20 @@ function updateChart(agriculture, valueChain, choices) {
         data: {
             labels: ['Positive Agriculture', 'Positive Value Chain', 'Positive Choices'],
             datasets: [{
-                label:
+                label: 'Sustainability Scores',
+                data: [agriculture, valueChain, choices],
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scale: {
+                ticks: {
+                    beginAtZero: true,
+                    max: 100
+                }
+            }
+        }
+    });
+}
