@@ -9,9 +9,6 @@ function toggleTheme() {
     toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
 }
 
-// ... existing calculateSustainability and updateChart functions ...
-
-
 function calculateSustainability() {
     // Positive Agriculture
     const regenerativeAgriculture = parseFloat(document.getElementById('regenerativeAgriculture').value);
@@ -59,26 +56,4 @@ function updateChart(agriculture, valueChain, choices) {
         data: {
             labels: ['Positive Agriculture', 'Positive Value Chain', 'Positive Choices'],
             datasets: [{
-                label: 'Sustainability Metrics',
-                data: [agriculture, valueChain, choices],
-                backgroundColor: 'rgba(0, 101, 195, 0.2)',
-                borderColor: 'rgba(0, 101, 195, 1)',
-                pointBackgroundColor: 'rgba(0, 101, 195, 1)',
-                pointBorderColor: '#fff',
-                pointHoverBackgroundColor: '#fff',
-                pointHoverBorderColor: 'rgba(0, 101, 195, 1)'
-            }]
-        },
-        options: {
-            scales: {
-                r: {
-                    angleLines: {
-                        display: false
-                    },
-                    suggestedMin: 0,
-                    suggestedMax: 100
-                }
-            }
-        }
-    });
-}
+                label:
