@@ -5,8 +5,9 @@ function toggleTheme() {
     isDarkMode = !isDarkMode;
 
     document.body.classList.toggle('dark-mode');
-    const toggleButton = document.getElementById('theme-toggle');
-    toggleButton.textContent = isDarkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode';
+    const toggleButton = document.getElementById('btn-theme');
+    toggleButton.classList.toggle('fa-sun', isDarkMode);
+    toggleButton.classList.toggle('fa-moon', !isDarkMode);
 }
 
 function calculateSustainability() {
