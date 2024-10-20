@@ -5,70 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="PepsiCo Sustainability Calculator" />
     <link rel="icon" type="image/png" href="PEPSIimage.png">
-    <link data-react-helmet="true" rel="icon" type="image/png" href="PEPSIimage.png">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/fa62c117c7.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
     <title>PepsiCo Sustainability Calculator</title>
-    <style>
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: #333;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #f9f9f9;
-        }
-        h1, h2 {
-            color: #0065c3;
-        }
-        .input-group {
-            margin-bottom: 20px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: 500;
-        }
-        input[type="number"] {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            font-size: 16px;
-        }
-        button {
-            background-color: #0065c3;
-            color: white;
-            padding: 12px 20px;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            cursor: pointer;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-        }
-        button:hover {
-            background-color: #004c9e;
-        }
-        button i {
-            margin-right: 8px;
-        }
-        #result {
-            margin-top: 20px;
-            font-weight: bold;
-            background-color: #eaf4ff;
-            padding: 15px;
-            border-radius: 4px;
-        }
-        #chart {
-            margin-top: 30px;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <h1><i class="fas fa-leaf"></i> PepsiCo Sustainability Calculator</h1>
@@ -125,79 +68,6 @@
         <canvas id="sustainabilityChart"></canvas>
     </div>
 
-    <script>
-        let chart;
-
-        function calculateSustainability() {
-            // Positive Agriculture
-            const regenerativeAgriculture = parseFloat(document.getElementById('regenerativeAgriculture').value);
-            const sustainablySourced = parseFloat(document.getElementById('sustainablySourced').value);
-            const waterConsumption = parseFloat(document.getElementById('waterConsumption').value);
-            const energyEfficiency = parseFloat(document.getElementById('energyEfficiency').value);
-            const renewableEnergy = parseFloat(document.getElementById('renewableEnergy').value);
-            const pesticideUsage = parseFloat(document.getElementById('pesticideUsage').value);
-
-            // Positive Value Chain
-            const recycledPackaging = parseFloat(document.getElementById('recycledPackaging').value);
-            const recyclableMaterial = parseFloat(document.getElementById('recyclableMaterial').value);
-            const carbonEmissions = parseFloat(document.getElementById('carbonEmissions').value);
-
-            // Positive Choices
-            const positiveChoices = parseFloat(document.getElementById('positiveChoices').value);
-
-            // Calculate scores (this is a simplified calculation and should be adjusted based on PepsiCo's actual metrics)
-            const agricultureScore = (sustainablySourced + renewableEnergy) / 2;
-            const valueChainScore = (recycledPackaging + recyclableMaterial) / 2;
-
-            const overallScore = (agricultureScore + valueChainScore + positiveChoices) / 3;
-
-            const resultElement = document.getElementById('result');
-            resultElement.innerHTML = `
-                <h3>Results:</h3>
-                <p>Positive Agriculture Score: ${agricultureScore.toFixed(2)}%</p>
-                <p>Positive Value Chain Score: ${valueChainScore.toFixed(2)}%</p>
-                <p>Positive Choices Score: ${positiveChoices.toFixed(2)}%</p>
-                <p>Overall Sustainability Score: ${overallScore.toFixed(2)}%</p>
-            `;
-
-            updateChart(agricultureScore, valueChainScore, positiveChoices);
-        }
-
-        function updateChart(agriculture, valueChain, choices) {
-            const ctx = document.getElementById('sustainabilityChart').getContext('2d');
-
-            if (chart) {
-                chart.destroy();
-            }
-
-            chart = new Chart(ctx, {
-                type: 'radar',
-                data: {
-                    labels: ['Positive Agriculture', 'Positive Value Chain', 'Positive Choices'],
-                    datasets: [{
-                        label: 'Sustainability Metrics',
-                        data: [agriculture, valueChain, choices],
-                        backgroundColor: 'rgba(0, 101, 195, 0.2)',
-                        borderColor: 'rgba(0, 101, 195, 1)',
-                        pointBackgroundColor: 'rgba(0, 101, 195, 1)',
-                        pointBorderColor: '#fff',
-                        pointHoverBackgroundColor: '#fff',
-                        pointHoverBorderColor: 'rgba(0, 101, 195, 1)'
-                    }]
-                },
-                options: {
-                    scales: {
-                        r: {
-                            angleLines: {
-                                display: false
-                            },
-                            suggestedMin: 0,
-                            suggestedMax: 100
-                        }
-                    }
-                }
-            });
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>

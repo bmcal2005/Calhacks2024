@@ -1,37 +1,7 @@
 let chart;
 
-// Theme toggle functionality
-const body = document.body;
-const btnTheme = document.querySelector('.fa-moon');
-const addThemeClass = (bodyClass, btnClass) => {
-    body.classList.add(bodyClass);
-    btnTheme.classList.add(btnClass);
-}
-
-const getBodyTheme = localStorage.getItem('portfolio-theme');
-const getBtnTheme = localStorage.getItem('portfolio-btn-theme');
-addThemeClass(getBodyTheme, getBtnTheme);
-
-const isDark = () => body.classList.contains('dark');
-
-const setTheme = (bodyClass, btnClass) => {
-    body.classList.remove(localStorage.getItem('portfolio-theme'));
-    btnTheme.classList.remove(localStorage.getItem('portfolio-btn-theme'));
-
-    addThemeClass(bodyClass, btnClass);
-
-    localStorage.setItem('portfolio-theme', bodyClass);
-    localStorage.setItem('portfolio-btn-theme', btnClass);
-}
-
-const toggleTheme = () => {
-    isDark() ? setTheme('light', 'fa-moon') : setTheme('dark', 'fa-sun');
-}
-
-btnTheme.addEventListener('click', toggleTheme);
-
-// Sustainability calculation functionality
 function calculateSustainability() {
+    // Positive Agriculture
     const regenerativeAgriculture = parseFloat(document.getElementById('regenerativeAgriculture').value);
     const sustainablySourced = parseFloat(document.getElementById('sustainablySourced').value);
     const waterConsumption = parseFloat(document.getElementById('waterConsumption').value);
@@ -39,14 +9,18 @@ function calculateSustainability() {
     const renewableEnergy = parseFloat(document.getElementById('renewableEnergy').value);
     const pesticideUsage = parseFloat(document.getElementById('pesticideUsage').value);
 
+    // Positive Value Chain
     const recycledPackaging = parseFloat(document.getElementById('recycledPackaging').value);
     const recyclableMaterial = parseFloat(document.getElementById('recyclableMaterial').value);
     const carbonEmissions = parseFloat(document.getElementById('carbonEmissions').value);
 
+    // Positive Choices
     const positiveChoices = parseFloat(document.getElementById('positiveChoices').value);
 
+    // Calculate scores (this is a simplified calculation and should be adjusted based on PepsiCo's actual metrics)
     const agricultureScore = (sustainablySourced + renewableEnergy) / 2;
     const valueChainScore = (recycledPackaging + recyclableMaterial) / 2;
+
     const overallScore = (agricultureScore + valueChainScore + positiveChoices) / 3;
 
     const resultElement = document.getElementById('result');
